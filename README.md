@@ -29,4 +29,8 @@ my replication in python 👇
 
 This is created by Denzven with love
 
+Star this repo on GitHub [⭐](https://github.com/denzven/SafeMechanism)
+
+
+
 Licensed under GNU GPL v3
