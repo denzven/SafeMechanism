@@ -1,8 +1,8 @@
 # SafeMechanism
 
 Welcome there! this is SafeMechanism 2.0!  
-To start using the script you need to run [SafeMechanism(GUI).exe](https://github.com/denzven/SafeMechanism/blob/main/SafeMechanism(GUI).exe?raw=true)  
-Or the [SafeMechanismInstaller.exe](https://github.com/denzven/SafeMechanism/blob/main/SafeMechanismInstaller.exe?raw=true)
+To start using the script you need to run [SafeMechanism(GUI).exe](https://github.com/denzven/SafeMechanism/blob/main/App/SafeMechanism(GUI).exe?raw=true)  
+Or the [SafeMechanismInstaller.exe](https://github.com/denzven/SafeMechanism/blob/main/Installer/SafeMechanismInstaller.exe?raw=true)
 Don't worry the exe file is safe to use.  
 
 This project is Open-Source you will find the source code at my github:
