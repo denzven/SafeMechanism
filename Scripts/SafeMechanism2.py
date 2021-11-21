@@ -33,6 +33,7 @@ def GetUserInput():
 
     top = tk.Toplevel()
     top.title("User Input")
+    top.iconbitmap("..\\Icons\\SafeMechaismIcon.ico")
 
     my_frame = tk.Frame(top)
     my_frame.pack(padx=5, pady=5)
@@ -131,15 +132,19 @@ PassKey = None
 SafeContent = None
 
 root = tk.Tk()
+root.title("SafeMechaism(GUI)")
+root.geometry('350x450+700+200')
+root.iconbitmap("..\\Icons\\SafeMechaismIcon.ico")
 
 e = tk.Entry(root, font=("Calibri 20"))
 e.grid(row=0, column=0, columnspan=3, ipady=10)
 
 for y, row in enumerate(NumPad, 1):
     for x, key in enumerate(row):
+        tk.Grid.columnconfigure(root,x,weight=1)
+        tk.Grid.rowconfigure(root,y,weight=1)
         b = tk.Button(root, text=key, command=lambda val=key: MainSafe(val), font=("Calibri 20"))
-        b.grid(row=y, column=x, ipadx=40, ipady=20)
+        b.grid(row=y, column=x,sticky="NSEW")
 
-tkinter.messagebox.showinfo('Welcome!', "Welcome to the Safe! this is a temporary safe that remembers your last put password and locks it until unlocked and forgets the password! click ok to use the safe!")
-
+tkinter.messagebox.showinfo('Welcome!', "Welcome to the Safe! this is a temporary safe that remembers your last put password and locks it until unlocked and forgets the password! click ok to use the safe!",parent=root)
 root.mainloop()
