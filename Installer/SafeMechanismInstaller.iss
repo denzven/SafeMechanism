@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "SafeMechanism(GUI)"
-#define MyAppVersion "2.1"
+#define MyAppVersion "2.2"
 #define MyAppPublisher "Denzven"
 #define MyAppURL "https://denzven.pythonanywhere.com/"
 #define MyAppExeName "SafeMechanism(GUI).exe"
@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{B186F5C0-2620-4BD7-90B1-37FB1C5E8035}
+AppId={{53C8D010-6C3D-4D11-BCD6-D12E1A44A690}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
