@@ -112,7 +112,12 @@ def GetUserInput():
 
     top = tk.Toplevel()
     top.title("User Input")
-    top.iconbitmap("..\\Icons\\SafeMechaismIcon.ico")
+    try:
+        top.iconbitmap("..\\Icons\\SafeMechaismIcon.ico")
+        pass
+    except Exception as e:
+        pass
+
 
     my_frame = tk.Frame(top)
     my_frame.pack(padx=5, pady=5)
@@ -216,7 +221,11 @@ SafeContent = None
 root = tk.Tk()
 root.title("SafeMechaism(GUI)")
 root.geometry('350x450+700+200')
-root.iconbitmap("..\\Icons\\SafeMechaismIcon.ico")
+try:
+    top.iconbitmap("..\\Icons\\SafeMechaismIcon.ico")
+    pass
+except Exception as e:
+    pass
 
 e = tk.Entry(root, font=("Calibri 20"))
 e.grid(row=0, column=0, columnspan=3, ipady=10)
