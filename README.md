@@ -18,6 +18,8 @@ Thats it!
 This is the algorithm of an "Temporary Safe" i had seen during my vacation.  
 I was so mesmerised by its genius design that i wanted to replicate it in python! so here it is!  
 
+This App can encrypt and decrypt txt files to denz files now!
+
 Video of the actual safe 👇 [Click to see video](https://i.imgur.com/CAP0YXj)  
 [![IRL Safe Working](https://i.imgur.com/CAP0YXj.gif)](https://i.imgur.com/CAP0YXj.mp4)  
 
