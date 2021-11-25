@@ -7,10 +7,43 @@ Welcome to SafeMechanism(GUI).
 # Imports
 import tkinter as tk
 import tkinter.messagebox
+from tkinter import filedialog
+
 import sys
 import os
 import base64
 import pyAesCrypt as aes
+
+from pypresence import Presence
+import time
+
+def AppRpc(InputFile,FileExt,RpcState = None):    
+    
+    
+    if FileExt == ".denz":
+        RpcState = f"Unlocking {InputFile}"
+    if FileExt == ".txt":
+        RpcState = f"locking {InputFile}"
+    #if InputFile == None:
+    #    RpcState = None
+
+    try:
+        global StartTime
+        client_id = '913261930024685638'
+        RPC = Presence(client_id,pipe=0)
+        RPC.connect()
+        RPC.update(
+        details="Try SafeMechanism(GUI) now! ",
+        large_image="mainicon", large_text="Oh yea, my App has Discord presence lol",
+        buttons=[{"label": "Download the App!", "url": "https://github.com/denzven/SafeMechanism/blob/main/Installer/SafeMechanismInstaller.exe?raw=true"}, 
+                {"label": "Check out the GitHub repo!", "url": "https://github.com/denzven/SafeMechanism"}],
+                start = StartTime,state=RpcState
+        )
+        pass
+    except Exception as e:
+        print(e)
+        pass
+    #time.sleep(15) 
 
 def DenzEncrypt(InputFile,InputPin):
     global PIN
@@ -72,7 +105,7 @@ def EncryptFile(InputFile,InputPin):
 
     PathToFile,FileExt = os.path.splitext(InputFile)
     if FileExt == '.txt':
-        if len(PIN) >= 3 and len(PIN) <= 6:
+        if len(InputPin) >= 3 and len(InputPin) <= 6:
             print("PIN SET")
             PIN = ''
             e.delete('0', 'end')
@@ -89,6 +122,7 @@ def EncryptFile(InputFile,InputPin):
             tkinter.messagebox.showerror('PIN NOT VALID!', 'PIN entered is invalid, the PIN must be between 3-6 chars long!')
 
     elif FileExt == '.denz':
+        AppRpc(InputFile,FileExt)
         OutputFile = f"{PathToFile}.txt"
         OutputFile1 = f"{PathToFile}.denz~"
         PassKey = DenzDecrypt(InputFile,InputPin)
@@ -171,6 +205,9 @@ def GetUserInput():
 
 
 def MainSafe(value):
+    InputFile = None
+    FileExt = None
+    
     """INFO INFO.
 
     info
@@ -187,24 +224,37 @@ def MainSafe(value):
     elif value == '#':
         if PassKey is None and len(sys.argv) == 1:
             if len(PIN) >= 3 and len(PIN) <= 6:
+                AppRpc(InputFile,FileExt)
                 PassKey = PIN
-                print("PIN SET")
-                print("PassKey: " + PassKey)
                 PIN = ''
                 e.delete('0', 'end')
+                print("PIN SET")
+                print("PassKey: " + PassKey)
                 tkinter.messagebox.showinfo('PIN SET', f'PIN has been set to: {PassKey}')
+                InputFilePerm = tkinter.messagebox.askquestion('askquestion', 'Do you want to process an Existing file?')
+                if InputFilePerm == 'yes':
+                    InputFile = filedialog.askopenfilename(
+                        initialdir="C:/Users/MainFrame/Desktop/", 
+                        title="Open Text file", 
+                        filetypes=(("Text Files", "*.txt"),("Denz Files","*.denz"),("all files","*.*"),)
+                        )
+                    EncryptFile(InputFile,PassKey)
 
-                SafeContentPerm = tkinter.messagebox.askquestion('askquestion', 'Do you want to put some content?')
-                if SafeContentPerm == 'yes':
-                    GetUserInput()
-                elif SafeContentPerm == 'no':
-                    tkinter.messagebox.showinfo('Response', 'Okay, your safe has been locked sucessfully')
-                    SafeContent = None
+                elif InputFilePerm == 'no':
+                    SafeContentPerm = tkinter.messagebox.askquestion('askquestion', 'Do you want to put some content?')
+                    if SafeContentPerm == 'yes':
+                        GetUserInput()
+                    elif SafeContentPerm == 'no':
+                        tkinter.messagebox.showinfo('Response', 'Okay, your safe has been locked sucessfully')
+                        SafeContent = None
+                    else:
+                        tkinter.messagebox.showwarning('error', 'Something went wrong!')
                 else:
                     tkinter.messagebox.showwarning('error', 'Something went wrong!')
 
+
             else:
-                print("PIN NOT VALID!")
+                print("PIN NOT VALID2!")
                 print("INVALID PIN: " + PIN)
                 # clear `PIN`
                 PIN = ''
@@ -212,7 +262,7 @@ def MainSafe(value):
                 e.delete('0', 'end')
                 tkinter.messagebox.showerror('PIN NOT VALID!', 'PIN entered is invalid, the PIN must be between 3-6 chars long!')
 
-        elif sys.argv[1] is not None:
+        elif len(sys.argv) == 2:
             EncryptFile(sys.argv[1],PIN)
 
         else:
@@ -250,6 +300,11 @@ NumPad = [
 PIN = ''
 PassKey = None
 SafeContent = None
+InputFile = None
+FileExt = None
+StartTime = time.time()
+
+AppRpc(InputFile,FileExt,RpcState = "Starting screen")
 
 root = tk.Tk()
 root.title("SafeMechaism(GUI)")
